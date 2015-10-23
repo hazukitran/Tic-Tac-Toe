@@ -53,7 +53,7 @@ def winning_moves(board, symbol)
 end
 
 def computer_move(board)
-  if winning_moves(board, "O") || winning_moves(board, "X")
+  unless winning_moves(board, "O") || winning_moves(board, "X")
   else
     position = available_positions(board).sample
     board[position] = "O"
