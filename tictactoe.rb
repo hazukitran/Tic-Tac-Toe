@@ -51,8 +51,9 @@ def winning_moves(board, symbol)
           return board[position] == "0"
         end
       end
-    end
-  false 
+    end 
+  end
+  false
 end
 
 def computer_move(board)
@@ -65,7 +66,7 @@ end
 
 # -------------- START PROGRAM ---------------
 
-draw_board(board)
+render_board(board)
 
 loop do
 
