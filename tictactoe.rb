@@ -1,12 +1,9 @@
-require 'pry'
-
 board = { 1 => " ", 2 => " ", 3 => " ", 4 => " ", 5 => " ",
           6 => " ", 7 => " ", 8 => " ", 9 => " "}
 
 WINNING_LINES = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
 
 # --------------- METHODS --------------------
-#draw_board
 def render_board(board)
   system 'clear'
   puts " #{board[1]} | #{board[2]} | #{board[3]} "
@@ -16,7 +13,6 @@ def render_board(board)
   puts " #{board[7]} | #{board[8]} | #{board[9]} "
 end 
 
-#return an array of keys for all empty spaces.
 def available_positions(board)
   board.select { |k, v| v == " "}.keys
 end
@@ -48,7 +44,7 @@ def winning_moves(board, symbol)
     if board.values_at(*pattern).count(symbol) == 2 && board.values_at(*pattern).count(" ") == 1
       pattern.each do |position|
         if board[position] == " "
-          return board[position] == "0"
+          return board[position] = "O"
         end
       end
     end 
