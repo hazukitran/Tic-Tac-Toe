@@ -4,6 +4,7 @@ board = { 1 => " ", 2 => " ", 3 => " ", 4 => " ", 5 => " ",
 WINNING_LINES = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
 
 # --------------- METHODS --------------------
+
 def render_board(board)
   system 'clear'
   puts " #{board[1]} | #{board[2]} | #{board[3]} "
@@ -54,9 +55,8 @@ end
 
 def computer_move(board)
   unless winning_moves(board, "O") || winning_moves(board, "X")
-  else
-    position = available_positions(board).sample
-    board[position] = "O"
+  position = available_positions(board).sample
+  board[position] = "O"
   end
 end
 
