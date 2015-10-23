@@ -7,7 +7,7 @@ WINNING_LINES = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]
 
 # --------------- METHODS --------------------
 #draw_board
-def draw_board(board)
+def render_board(board)
   system 'clear'
   puts " #{board[1]} | #{board[2]} | #{board[3]} "
   puts "-----------"
@@ -38,13 +38,14 @@ def check_winner(board)
   WINNING_LINES.each do |pattern|
     return "Player" if board.values_at(*pattern).count("X") == 3
     return "Computer" if board.values_at(*pattern).count("O") == 3
+  end
 end
 
 #----------- COMPUTER SMART MOVE --------------
 
 def winning_moves(board, symbol)
   WINNING_LINES.each do |pattern|
-    if board.values_at(*pattern).count(symbol) == 2 && board.values_at(*line).count(" ") == 1
+    if board.values_at(*pattern).count(symbol) == 2 && board.values_at(*pattern).count(" ") == 1
       pattern.each do |position|
         if board[position] == " "
           return board[position] == "0"
@@ -77,7 +78,7 @@ end until winner || board_full?(board)
 if winner
   puts "The winner is #{winner}."
 else
-  puts "It's a tie."
+  puts "It's a draw."
 end
 
 
