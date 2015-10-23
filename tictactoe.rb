@@ -31,7 +31,6 @@ def player_move(board)
     position = gets.chomp.to_i
   end until available_positions(board).include?(position)
   board[position] = "X"
- #X doesn't show on board
 end
 
 def check_winner(board)
@@ -39,6 +38,7 @@ def check_winner(board)
     return "Player" if board.values_at(*pattern).count("X") == 3
     return "Computer" if board.values_at(*pattern).count("O") == 3
   end
+  nil
 end
 
 #----------- COMPUTER SMART MOVE --------------
@@ -67,14 +67,17 @@ end
 
 draw_board(board)
 
-begin
+loop do
+
   player_move(board)
-  draw_board(board)
-  computer_move(board)
-  draw_board(board)
-  winner = check_winner(board)
-end until winner || board_full?(board)
-  
+  computer_move(board) unless check_winner(board)
+  render_board(board)
+  break if check_winner(board) || board_full?(board)
+
+end
+
+winner = check_winner(board)
+
 if winner
   puts "The winner is #{winner}."
 else
